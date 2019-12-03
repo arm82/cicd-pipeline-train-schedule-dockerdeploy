@@ -1,6 +1,9 @@
 #!/usr/bin/env groovy
 
-timeout = 60
+
+pipeline {
+	
+	timeout = 60
 	numberOfBuildsToKeep = 10
 
 	enableFeatureBuild()
@@ -9,7 +12,6 @@ timeout = 60
 	enableGitlabTrigger()
 	enableCronTrigger('H 20 * * *')
 
-pipeline {
     agent any
     stages {
         stage('Build') {
