@@ -1,6 +1,11 @@
 #!/usr/bin/env groovy
 
-timeout = 60
+
+pipeline() {
+
+	//mavenProperties '-Dmaven.test.skip=true'
+
+	timeout = 60
 	numberOfBuildsToKeep = 10
 
 	enableFeatureBuild()
@@ -8,6 +13,18 @@ timeout = 60
 
 	enableGitlabTrigger()
 	enableCronTrigger('H 20 * * *')
+
+	nonReleaseGoal = 'clean deploy --update-snapshots --threads 1.0C'
+
+	afterPublishing {
+		when {
+			env.BRANCH_NAME == 'develop'
+		}
+		perform {
+			mavenSonar()
+		}
+	}
+}
 
 
 
