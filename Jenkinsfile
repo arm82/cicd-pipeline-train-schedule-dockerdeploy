@@ -16,14 +16,6 @@ pipeline() {
 
 	nonReleaseGoal = 'clean deploy --update-snapshots --threads 1.0C'
 
-	afterPublishing {
-		when {
-			env.BRANCH_NAME == 'master'
-		}
-		perform {
-			mavenSonar()
-		}
-	}
 }
 
 
