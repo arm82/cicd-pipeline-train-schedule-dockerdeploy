@@ -1,8 +1,10 @@
-#!/usr/bin/env groovy
-
 
 pipeline {
     agent any
+	 stages {
+           stage('Build') {
+		       steps {
+			
 
 	//mavenProperties '-Dmaven.test.skip=true'
 
@@ -16,7 +18,9 @@ pipeline {
 	enableCronTrigger('H 20 * * *')
 
 	nonReleaseGoal = 'clean deploy --update-snapshots --threads 1.0C'
-
+		       }
+	       }
+	 }
 }
 
 
