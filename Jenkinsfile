@@ -2,6 +2,7 @@
 pipeline {
 	options {
       timeout(time: 1, unit: 'HOURS') 
+      buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '30'))
   }
     agent any
 	 stages {
@@ -10,8 +11,6 @@ pipeline {
 			
 
 	//mavenProperties '-Dmaven.test.skip=true'
-
-	numberOfBuildsToKeep = 10
 
 	enableFeatureBuild()
 	enableDependencyRecommender()
