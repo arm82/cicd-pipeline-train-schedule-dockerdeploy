@@ -1,5 +1,13 @@
 #!/usr/bin/env groovy
 
-@Library('pa-commons') _
+timeout = 60
+	numberOfBuildsToKeep = 10
+
+	enableFeatureBuild()
+	enableDependencyRecommender()
+
+	enableGitlabTrigger()
+	enableCronTrigger('H 20 * * *')
+
 
 
