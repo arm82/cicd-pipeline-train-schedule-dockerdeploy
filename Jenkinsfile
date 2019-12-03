@@ -18,7 +18,7 @@ pipeline() {
 
 	afterPublishing {
 		when {
-			env.BRANCH_NAME == 'develop'
+			env.BRANCH_NAME == 'master'
 		}
 		perform {
 			mavenSonar()
