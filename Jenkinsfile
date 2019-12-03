@@ -16,13 +16,6 @@ pipelineMultiBranchPublishComponent() {
 
 	nonReleaseGoal = 'clean deploy --update-snapshots --threads 1.0C'
 
-	afterPublishing {
-		when {
-			env.BRANCH_NAME == 'develop'
-		}
-		perform {
-			mavenSonar()
-		}
-	}
+
 }
 
