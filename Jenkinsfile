@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-@Library('pa-commons') _
+
 pipelineMultiBranchPublishComponent() {
 
 	//mavenProperties '-Dmaven.test.skip=true'
