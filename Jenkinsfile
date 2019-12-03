@@ -21,7 +21,7 @@ pipeline {
 	enableGitlabTrigger()
 	enableCronTrigger('H 20 * * *')
 
-	sh 'clean deploy --update-snapshots --threads 1.0C'
+	sh 'clean deploy --update-snapshots'
 		       }
 	       }
 	 }
