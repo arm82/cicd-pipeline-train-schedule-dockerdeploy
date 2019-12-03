@@ -1,7 +1,8 @@
 #!/usr/bin/env groovy
 
 
-pipeline{
+pipeline {
+    agent any
 
 	//mavenProperties '-Dmaven.test.skip=true'
 
