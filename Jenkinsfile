@@ -1,5 +1,8 @@
 
 pipeline {
+	options {
+      timeout(time: 1, unit: 'HOURS') 
+  }
     agent any
 	 stages {
            stage('Build') {
@@ -8,7 +11,6 @@ pipeline {
 
 	//mavenProperties '-Dmaven.test.skip=true'
 
-	timeout = 60
 	numberOfBuildsToKeep = 10
 
 	enableFeatureBuild()
