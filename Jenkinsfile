@@ -1,15 +1,28 @@
 #!/usr/bin/env groovy
-@Library('pa-commons') _
 
-pipeline {
-	agent any
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Running build automation'
-                sh './gradlew build --no-daemon'
-                archiveArtifacts artifacts: 'dist/trainSchedule.zip'
-            }
-        }
-    }
+@Library('pa-commons') _
+pipelineMultiBranchPublishComponent() {
+
+	//mavenProperties '-Dmaven.test.skip=true'
+
+	timeout = 60
+	numberOfBuildsToKeep = 10
+
+	enableFeatureBuild()
+	enableDependencyRecommender()
+
+	enableGitlabTrigger()
+	enableCronTrigger('H 20 * * *')
+
+	nonReleaseGoal = 'clean deploy --update-snapshots --threads 1.0C'
+
+	afterPublishing {
+		when {
+			env.BRANCH_NAME == 'develop'
+		}
+		perform {
+			mavenSonar()
+		}
+	}
 }
+
