@@ -8,7 +8,10 @@ pipeline {
 	 stages {
            stage('Build') {
 		       steps {
-			
+		
+			      
+                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+          
 
 	//mavenProperties '-Dmaven.test.skip=true'
 
@@ -18,7 +21,7 @@ pipeline {
 	enableGitlabTrigger()
 	enableCronTrigger('H 20 * * *')
 
-	nonReleaseGoal = 'clean deploy --update-snapshots --threads 1.0C'
+	sh 'clean deploy --update-snapshots --threads 1.0C'
 		       }
 	       }
 	 }
