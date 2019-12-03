@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-
+@Library('pa-commons') _
 
 pipeline {
 	agent any
